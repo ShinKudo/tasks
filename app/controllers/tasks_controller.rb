@@ -1,3 +1,5 @@
+require 'task.rb'
+
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :done]
 
@@ -63,8 +65,9 @@ class TasksController < ApplicationController
   end
   
   def done
-    @task.done = true
-    @task.save
+    TASKS.to_done(@task)
+    #@task.done = true
+    #@task.save
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: 'Task was successfully doned.' }
       format.json { head :no_content }
