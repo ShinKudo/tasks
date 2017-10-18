@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+<h3>Todo</h3>
+<table>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= form_with(model: task, local: true, url: done_task_path(task),method: :patch) do |form| %>
+        <%= form.submit %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>done</h3>
+<table>
+  <tbody>
+    <% @dones.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Task', new_task_path %>
